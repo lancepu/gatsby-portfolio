@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Layout from '../components/layout'
 
@@ -9,7 +7,9 @@ const Index = () => {
         <React.Fragment>
             <SEO />
             <Layout>
-                <div>Hello World</div>
+                <h3>Hello World</h3>
+                <a href="/about"><img className="avatar" src="https://via.placeholder.com/150" alt="Lance Pu"/></a>
+                <h3>Welcome to my <a href="/project">portfolio</a> / <a href="/blog">blog</a> / <a href="/tool">utility belt</a></h3>
             </Layout>
         </React.Fragment>
     )

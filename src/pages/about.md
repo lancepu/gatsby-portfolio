@@ -19,6 +19,8 @@ My starting language was visual basic, which was integrated in Microsoft Excel. 
 
 In 2018, I enrolled into the Columbia Coding Bootcamp learning Fullstack Web Development, learning about various frameworks, libraries, tools, and how they work together. Having a structured curriculum and support from knowledgable individuals really helped me grow into a more seasoned developer. 
 
+In my free time, I enjoy playing video games, watching TV shows, traveling, and cooking.
+
 My journey as a developer is just getting started, I have much to learn (Starting with this portfolio using Gatsby). I will be sharing my journey here, feel free to come back anytime.
 
 Thanks for reading!
