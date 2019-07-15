@@ -17,7 +17,7 @@ I picked up coding when I was in college, but really got into it when I was work
 
 My starting language was visual basic, which was integrated in Microsoft Excel. Later on I picked up Python, which I heard was the easiest language to start out. I like it very much, making small scripts and programs using Python makes me feel like a superhero.
 
-In 2018, I enrolled into the Columbia Coding Bootcamp learning Fullstack Web Development, learning about various frameworks, technologies, and how they work together. Having a structured curriculum and support from knowledgable individuals really helped me grow into a more seasoned developer. 
+In 2018, I enrolled into the Columbia Coding Bootcamp learning Fullstack Web Development, learning about various frameworks, libraries, tools, and how they work together. Having a structured curriculum and support from knowledgable individuals really helped me grow into a more seasoned developer. 
 
 My journey as a developer is just getting started, I have much to learn (Starting with this portfolio using Gatsby). I will be sharing my journey here, feel free to come back anytime.
 

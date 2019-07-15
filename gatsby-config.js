@@ -98,6 +98,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -115,6 +116,12 @@ module.exports = {
             options: {
               maxWidth: 800,
               quality: 100,
+            },
+          },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: "_blank"
             },
           },
           {
@@ -139,7 +146,7 @@ module.exports = {
         background_color: `#292a2d`,
         theme_color: `#292a2d`,
         display: `minimal-ui`,
-        icon: `src/images/favicon-32x32.png`,
+        icon: `src/images/favicon.png`,
       },
     },
   ],

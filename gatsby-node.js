@@ -71,6 +71,8 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
         fileAbsolutePath.indexOf('/tools/') !== -1,
     )
 
+    const allPosts = [...posts, ...projects, ...tools]
+
     // Create posts index with pagination
     paginate({
       createPage,
@@ -119,11 +121,11 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
     // Create tag pages
     const tags = filter(
       tag => not(isNil(tag)),
-      uniq(flatMap(post => post.frontmatter.tags, posts)),
+      uniq(flatMap(post => post.frontmatter.tags, allPosts)),
     )
 
     forEach(tag => {
-      const postsWithTag = posts.filter(
+      const postsWithTag = allPosts.filter(
         post =>
           post.frontmatter.tags && post.frontmatter.tags.indexOf(tag) !== -1,
       )
