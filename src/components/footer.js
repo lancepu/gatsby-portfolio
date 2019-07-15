@@ -1,10 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 const Footer = () => (
   <footer>
         <a
-          href="https://www.linkedin.com/in/lance-pu/"
+          href="https://www.linkedin.com/in/lancepu/"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -20,7 +19,7 @@ const Footer = () => (
         </a>{' '}
         &ndash;{' '}
         <a
-          href="mailto:lance.pu@live.com"
+          href="mailto:contact@lancepu.dev"
           target="_top"
           rel="noopener noreferrer"
         >

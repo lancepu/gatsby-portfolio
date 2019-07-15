@@ -110,8 +110,8 @@ img {
   border-radius: 100%;
   border-style: solid;
   border-width: 5px;
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 200px;
+  max-height: 2000px;
 }
 
 figure {
