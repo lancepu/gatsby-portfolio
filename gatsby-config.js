@@ -1,45 +1,46 @@
-const postCssPresetEnv = require(`postcss-preset-env`)
-const postCSSNested = require('postcss-nested')
-const postCSSUrl = require('postcss-url')
-const postCSSImports = require('postcss-import')
-const cssnano = require('cssnano')
-const postCSSMixins = require('postcss-mixins')
+const postCssPresetEnv = require(`postcss-preset-env`);
+const postCSSNested = require("postcss-nested");
+const postCSSUrl = require("postcss-url");
+const postCSSImports = require("postcss-import");
+const cssnano = require("cssnano");
+const postCSSMixins = require("postcss-mixins");
 
 module.exports = {
   siteMetadata: {
     title: `Lance Pu`,
     description: `My utility belt`,
-    copyrights: '',
+    copyrights: "",
     author: `lance Pu`,
     logo: {
-      src: '',
-      alt: '',
+      src: "",
+      alt: "",
     },
-    logoText: 'Lance Pu',
-    defaultTheme: 'dark',
+    logoText: "Lance Pu",
+    defaultTheme: "dark",
     postsPerPage: 5,
     showMenuItems: 4,
-    menuMoreText: 'Show more',
+    menuMoreText: "Show more",
     mainMenu: [
       {
-        title: 'About',
-        path: '/about',
+        title: "About",
+        path: "/about",
       },
       {
-        title: 'Blog',
-        path: '/blog',
+        title: "Blog",
+        path: "/blog",
       },
       {
-        title: 'Projects',
-        path: '/project',
+        title: "Projects",
+        path: "/project",
       },
       {
-        title: 'Tools',
-        path: '/tool',
+        title: "Tools",
+        path: "/tool",
       },
     ],
   },
   plugins: [
+    "gatsby-plugin-antd",
     `babel-preset-gatsby`,
     `gatsby-plugin-react-helmet`,
     {
@@ -86,12 +87,12 @@ module.exports = {
           postCSSMixins(),
           postCSSNested(),
           postCssPresetEnv({
-            importFrom: 'src/styles/variables.css',
+            importFrom: "src/styles/variables.css",
             stage: 1,
             preserve: false,
           }),
           cssnano({
-            preset: 'default',
+            preset: "default",
           }),
         ],
       },
@@ -103,9 +104,9 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          'gatsby-remark-emoji',
+          "gatsby-remark-emoji",
           {
-            resolve: 'gatsby-remark-embed-video',
+            resolve: "gatsby-remark-embed-video",
             options: {
               related: false,
               noIframeBorder: true,
@@ -121,13 +122,13 @@ module.exports = {
           {
             resolve: `gatsby-remark-external-links`,
             options: {
-              target: "_blank"
+              target: "_blank",
             },
           },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: 'language-',
+              classPrefix: "language-",
               inlineCodeMarker: null,
               aliases: {},
               showLineNumbers: false,
@@ -150,4 +151,4 @@ module.exports = {
       },
     },
   ],
-}
+};

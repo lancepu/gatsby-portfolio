@@ -3,13 +3,21 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
+import { InputNumber } from "antd";
 
 class TipCalc extends Component {
-  state = { data: {} };
-  handleInputChange = ({ currentTarget: input }) => {
+  state = { data: {}, result: {} };
+
+  handleInputChange = name => value => {
     const data = { ...this.state.data };
-    data[input.name] = input.value;
-    this.setState({ data }, () => console.log(this.state.data));
+    console.log(value);
+    console.log(name);
+    // const { value, name } = input;
+    // value
+    data[name] = value;
+    this.setState({ data }, () => {
+      console.log(this.state.data);
+    });
   };
 
   calculateAmount = () => {
@@ -25,23 +33,24 @@ class TipCalc extends Component {
         <SEO />
         <Layout>
           <div>Tip Calculator</div>
-          <input
-            onChange={this.handleInputChange}
-            placeholder="Bill Amount (Before Tax)"
-            type="number"
-            name="billAmount"
+          <InputNumber
+            onChange={this.handleInputChange("billAmount")}
+            formatter={value =>
+              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+            parser={value => value.replace(/\$\s?|(,*)/g, "")}
           />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="Tax Amount"
-            type="number"
-            name="taxAmount"
+          <InputNumber
+            onChange={this.handleInputChange("taxAmount")}
+            formatter={value => `${value}%`}
+            parser={value => value.replace("%", "")}
           />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="How Many people"
-            name="personCount"
-            type="number"
+          <InputNumber
+            onChange={this.handleInputChange("personCount")}
+            formatter={value =>
+              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+            parser={value => value.replace(/\$\s?|(,*)/g, "")}
           />
           <button onClick={this.calculateAmount}>Calculate</button>
         </Layout>
