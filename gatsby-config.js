@@ -40,9 +40,24 @@ module.exports = {
     ],
   },
   plugins: [
-    "gatsby-plugin-antd",
+    {
+      resolve: 'gatsby-plugin-antd',
+      options: {
+        style: true
+      }
+    },
     `babel-preset-gatsby`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-less`,
+      options: {
+        javascriptEnabled: true,
+        modifyVars: {
+          'link-color': 'inherit;',
+          'link-decoration': 'underline',
+        }
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -150,5 +165,6 @@ module.exports = {
         icon: `src/images/favicon.png`,
       },
     },
+    
   ],
 };

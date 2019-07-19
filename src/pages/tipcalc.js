@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
-import { InputNumber } from "antd";
+import { InputNumber, Button } from "antd";
 
 class TipCalc extends Component {
   state = { data: {}, result: {} };
@@ -13,12 +13,12 @@ class TipCalc extends Component {
     console.log(value);
     console.log(name);
     // const { value, name } = input;
-    // value
+    value < 0 ? value == 0 : value
     data[name] = value;
     this.setState({ data }, () => {
       console.log(this.state.data);
     });
-  };
+  };ß
 
   calculateAmount = () => {
     const { billAmount, taxAmount, personCount } = this.state.data;
@@ -39,20 +39,23 @@ class TipCalc extends Component {
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={value => value.replace(/\$\s?|(,*)/g, "")}
+            min={0}
           />
           <InputNumber
             onChange={this.handleInputChange("taxAmount")}
-            formatter={value => `${value}%`}
-            parser={value => value.replace("%", "")}
-          />
-          <InputNumber
-            onChange={this.handleInputChange("personCount")}
             formatter={value =>
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={value => value.replace(/\$\s?|(,*)/g, "")}
+            min={0}
           />
-          <button onClick={this.calculateAmount}>Calculate</button>
+          <InputNumber
+            onChange={this.handleInputChange("personCount")}
+            defaultValue={1}
+            min={1}
+          />
+          <Button type="primary" onClick={this.calculateAmount}>Calculate</Button>
+          
         </Layout>
       </React.Fragment>
     );
