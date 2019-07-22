@@ -29,6 +29,9 @@ body {
   h1, h2, h3, h4, h5, h6 {
     color: var(--light-theme-pink);
   };
+  a:hover {
+    color: var(--light-theme-pink)
+  }
 
   @media (--phone) {
     font-size: 1rem;
@@ -40,6 +43,9 @@ body {
     h1, h2, h3, h4, h5, h6 {
       color: var(--dark-theme-pink);
     };
+    a:hover {
+      color: var(--dark-theme-pink)
+    }
   }
 }
 
@@ -85,6 +91,7 @@ h4 {
 
 a {
   color: inherit;
+  font-weight: bolder;
 }
 
 img {
