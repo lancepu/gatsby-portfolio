@@ -1,19 +1,13 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 import { InputNumber, Button } from "antd";
 
 class TipCalc extends Component {
-  state = { data: {}, result: {} };
+  state = { data: {billAmount: 0, taxAmount: 0, personCount: 1}, result: {} };
 
   handleInputChange = name => value => {
     const data = { ...this.state.data };
-    console.log(value);
-    console.log(name);
-    // const { value, name } = input;
-    value < 0 ? value == 0 : value
     data[name] = value;
     this.setState({ data }, () => {
       console.log(this.state.data);
@@ -22,6 +16,7 @@ class TipCalc extends Component {
 
   calculateAmount = () => {
     const { billAmount, taxAmount, personCount } = this.state.data;
+    console.log(billAmount, taxAmount, personCount)
     const amountPerPerson =
       (parseFloat(billAmount) + parseFloat(taxAmount)) / parseInt(personCount);
     alert(amountPerPerson);
@@ -39,6 +34,7 @@ class TipCalc extends Component {
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={value => value.replace(/\$\s?|(,*)/g, "")}
+            defaultValue={0}
             min={0}
           />
           <InputNumber
@@ -47,6 +43,7 @@ class TipCalc extends Component {
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={value => value.replace(/\$\s?|(,*)/g, "")}
+            defaultValue={0}
             min={0}
           />
           <InputNumber
