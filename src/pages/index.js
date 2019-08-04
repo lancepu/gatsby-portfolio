@@ -10,7 +10,7 @@ const Index = () => {
             <Layout>
                 <h3>Hello World</h3>
                 <a href="/about"><img className="avatar" src={profilePic} alt="Lance Pu"/></a>
-                <h3>Welcome to my <a href="/project">portfolio</a> / <a href="/blog">blog</a> / <a href="/tool">utility belt</a></h3>
+                <p style={{fontSize: "20px"}}>Welcome to my <a href="/project">portfolio</a> / <a href="/blog">blog</a> / <a href="/tool">utility belt</a></p>
             </Layout>
         </React.Fragment>
     )

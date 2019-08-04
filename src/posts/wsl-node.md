@@ -21,7 +21,7 @@ On my previous experience using Windows and NodeJS, I download the package from 
 ```
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 ```
-**Note the `setup_10` here, this means you are downloading the latest node version 10 (LTS as the time of this article)**
+**Note the `setup_10` here, this means you are downloading the latest node version 10.16.1 (LTS as of the time of this article)**
 
 2. Install node using 
 ```
@@ -29,6 +29,6 @@ sudo apt-get install -y nodejs
 ```
 3. After everything is installed, check your node and npm version by running `node --version` and `npm --version` respectively.
 
-You should now have a working Node environment, on your Linux Subsystem. Happing Coding!⌨️
+You should now have a working Node environment, on your Linux Subsystem. Happy coding!⌨️
 
 Thanks for reading!
