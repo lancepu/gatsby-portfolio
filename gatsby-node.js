@@ -79,7 +79,7 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
       items: posts,
       component: blogTemplate,
       itemsPerPage: siteMetadata.postsPerPage,
-      pathPrefix: '/blog/',
+      pathPrefix: '/blog',
     })
 
     paginate({
@@ -87,7 +87,7 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
       items: projects,
       component: projectTemplate,
       itemsPerPage: siteMetadata.postsPerPage,
-      pathPrefix: '/project/',
+      pathPrefix: '/project',
     })
 
     paginate({
@@ -95,7 +95,7 @@ exports.createPages = ({ actions, graphql, getNodes }) => {
       items: tools,
       component: toolTemplate,
       itemsPerPage: siteMetadata.postsPerPage,
-      pathPrefix: '/tool/',
+      pathPrefix: '/tool',
     })
 
     // Create each markdown page and post
