@@ -3,7 +3,7 @@ title: "Override Ant Design Theme"
 date: "2019-07-19"
 author: "Lance Pu"
 path: "/blog/override-antd-theme"
-tags: ["theme", "ant design"]
+tags: ["theme", "ant design", "javascript"]
 ---
 
 For writing my [small utilities](/tools), I am using [Ant Design](https://ant.design/), a popular UI Library for React that provides many useful components.
@@ -47,15 +47,15 @@ Now that this is done, we can start the override...
     modifyVars: {
         'link-color': 'inherit;',
         'link-decoration': 'underline',
-    }   
+    }
     }
 }
 ```
+
 As you can probably guess, `link-color` refers to the `anchor` tag color and `link-decoration` refers to the `anchor text-decoration`.
 
 Now my site style is back to normal.
 
-*If you are not using `gatsby-plugin-antd`, you will need to do a bit more configuration and install some more packages. You can check the details [here](https://stackoverflow.com/questions/51831582/change-the-theme-of-antd-when-using-gatsbyjs/51913211#51913211)*
-
+_If you are not using `gatsby-plugin-antd`, you will need to do a bit more configuration and install some more packages. You can check the details [here](https://stackoverflow.com/questions/51831582/change-the-theme-of-antd-when-using-gatsbyjs/51913211#51913211)_
 
 Thanks for reading!

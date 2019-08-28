@@ -4,7 +4,7 @@ date: "2019-07-15"
 author: "Lance Pu"
 path: "/tool/tipcalc"
 tags: ["tip", "tool"]
-excerpt: "Tip Calculator with the ability to 'go dutch'"
+excerpt: "Tip Calculator with the ability for 'going dutch'"
 ---
 
 # IN DEVELOPMENT

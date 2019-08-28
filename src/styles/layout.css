@@ -15,7 +15,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",  Helvetica, Arial, sans-serif;
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Roboto",
+    "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.54;
@@ -26,11 +27,16 @@ body {
   font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: var(--light-theme-pink);
-  };
+  }
   a:hover {
-    color: var(--light-theme-pink)
+    color: var(--light-theme-pink);
   }
 
   @media (--phone) {
@@ -40,16 +46,26 @@ body {
   &.dark-theme {
     background-color: var(--dark-background);
     color: var(--dark-color);
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: var(--dark-theme-pink);
-    };
+    }
     a:hover {
-      color: var(--dark-theme-pink)
+      color: var(--dark-theme-pink);
     }
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   display: flex;
   align-items: center;
   line-height: 1.3;
@@ -110,7 +126,6 @@ img {
   &.right {
     margin-left: auto;
   }
-
 }
 
 .avatar {
@@ -142,7 +157,7 @@ figure {
   figcaption {
     font-size: 14px;
     margin-top: 5px;
-    opacity: .8;
+    opacity: 0.8;
 
     &.left {
       text-align: left;
@@ -166,7 +181,7 @@ code {
   padding: 1px 6px;
   margin: 0 2px;
   border-radius: 5px;
-  font-size: .9rem;
+  font-size: 0.9rem;
 
   .dark-theme & {
     background: var(--dark-background-secondary);
@@ -177,7 +192,7 @@ pre {
   background: #1a1a1d;
   padding: 20px;
   border-radius: 8px;
-  font-size: .9rem;
+  font-size: 0.9rem;
   overflow: auto;
 
   @media (--phone) {
@@ -190,7 +205,7 @@ pre {
     color: #ccc;
     margin: 0;
     padding: 0;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -221,7 +236,9 @@ table {
   border-radius: 5px;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid var(--light-color);
   padding: 10px;
 
@@ -238,7 +255,8 @@ th {
   }
 }
 
-ul, ol {
+ul,
+ol {
   margin-left: 40px;
   padding: 0;
 
@@ -251,8 +269,11 @@ ol ol {
   list-style-type: lower-alpha;
 }
 
-button, input, textarea {
-  font-family: 'Inter UI', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",  Helvetica, Arial, sans-serif;
+button,
+input,
+textarea {
+  font-family: "Inter UI", -apple-system, BlinkMacSystemFont, "Roboto",
+    "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 .container {
@@ -270,7 +291,7 @@ button, input, textarea {
   justify-content: center;
   margin: 50px auto;
   width: 100%;
-  max-width: 800px;;
+  max-width: 800px;
 
   @media (--phone) {
     margin-top: 0;

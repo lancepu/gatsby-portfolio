@@ -41,10 +41,10 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-plugin-antd',
+      resolve: "gatsby-plugin-antd",
       options: {
-        style: true
-      }
+        style: true,
+      },
     },
     `babel-preset-gatsby`,
     `gatsby-plugin-react-helmet`,
@@ -53,9 +53,9 @@ module.exports = {
       options: {
         javascriptEnabled: true,
         modifyVars: {
-          'link-color': 'inherit;',
-          'link-decoration': 'underline',
-        }
+          "link-color": "inherit",
+          "link-decoration": "underline",
+        },
       },
     },
     {
@@ -165,6 +165,5 @@ module.exports = {
         icon: `src/images/favicon.png`,
       },
     },
-    
   ],
 };
