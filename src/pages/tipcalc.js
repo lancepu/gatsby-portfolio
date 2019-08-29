@@ -1,58 +1,35 @@
 import React, { Component } from "react";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
-import { InputNumber, Button } from "antd";
+import { Radio } from "antd";
+import EvenCard from "../components/tipCalComponent/evenCard";
+import DutchCard from "../components/tipCalComponent/dutchCard";
 
 class TipCalc extends Component {
-  state = { data: {billAmount: 0, taxAmount: 0, personCount: 1}, result: {} };
+  state = { mode: "even" };
 
-  handleInputChange = name => value => {
-    const data = { ...this.state.data };
-    data[name] = value;
-    this.setState({ data }, () => {
-      console.log(this.state.data);
-    });
-  };ß
-
-  calculateAmount = () => {
-    const { billAmount, taxAmount, personCount } = this.state.data;
-    console.log(billAmount, taxAmount, personCount)
-    const amountPerPerson =
-      (parseFloat(billAmount) + parseFloat(taxAmount)) / parseInt(personCount);
-    alert(amountPerPerson);
+  handleModeChange = e => {
+    const mode = e.target.value;
+    this.setState({ mode });
   };
 
   render() {
+    const { mode } = this.state;
     return (
       <React.Fragment>
         <SEO />
         <Layout>
-          <div>Tip Calculator</div>
-          <InputNumber
-            onChange={this.handleInputChange("billAmount")}
-            formatter={value =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={value => value.replace(/\$\s?|(,*)/g, "")}
-            defaultValue={0}
-            min={0}
-          />
-          <InputNumber
-            onChange={this.handleInputChange("taxAmount")}
-            formatter={value =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={value => value.replace(/\$\s?|(,*)/g, "")}
-            defaultValue={0}
-            min={0}
-          />
-          <InputNumber
-            onChange={this.handleInputChange("personCount")}
-            defaultValue={1}
-            min={1}
-          />
-          <Button type="primary" onClick={this.calculateAmount}>Calculate</Button>
-          
+          <h2>Tip Calculator</h2>
+          <Radio.Group
+            defaultValue="even"
+            buttonStyle="solid"
+            onChange={this.handleModeChange}
+            style={{ marginBottom: "20px" }}
+          >
+            <Radio.Button value="even">Split Evenly</Radio.Button>
+            <Radio.Button value="dutch">Go Dutch</Radio.Button>
+          </Radio.Group>
+          {mode == "even" ? <EvenCard /> : <DutchCard />}
         </Layout>
       </React.Fragment>
     );
