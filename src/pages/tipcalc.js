@@ -27,7 +27,7 @@ class TipCalc extends Component {
             style={{ marginBottom: "20px" }}
           >
             <Radio.Button value="even">Split Evenly</Radio.Button>
-            <Radio.Button value="dutch">Go Dutch</Radio.Button>
+            <Radio.Button value="dutch">Going Dutch</Radio.Button>
           </Radio.Group>
           {mode == "even" ? <EvenCard /> : <DutchCard />}
         </Layout>

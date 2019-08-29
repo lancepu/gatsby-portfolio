@@ -4,6 +4,7 @@ import { Card, Row, Col, Tag, Button, InputNumber } from "antd";
 const UserCard = ({
   userNumber,
   items,
+  currentItem,
   handleTagClose,
   handleDeleteUser,
   handlePriceAdd,
@@ -25,6 +26,7 @@ const UserCard = ({
           <Col span={10}>
             <InputNumber
               onChange={handleInputChange(userNumber)}
+              value={currentItem}
               onFocus={e => e.target.select()}
             />
           </Col>

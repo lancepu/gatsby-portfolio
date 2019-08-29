@@ -215,12 +215,9 @@ class DutchCard extends Component {
               />
             </Col>
             <Col style={{ marginBottom: "20px" }}>
-              <Button
-                type="primary"
-                shape="circle"
-                icon="plus"
-                onClick={this.handleAddUser}
-              />
+              <Button type="primary" icon="plus" onClick={this.handleAddUser}>
+                Add Person
+              </Button>
             </Col>
             <Col>
               <Button type="primary" onClick={this.calculateAmount}>
@@ -235,6 +232,7 @@ class DutchCard extends Component {
               <UserCard
                 key={u.userNumber}
                 userNumber={u.userNumber}
+                currentItem={u.currentItem}
                 items={u.items}
                 handleTagClose={this.handleTagClose}
                 handleDeleteUser={this.handleUserDelete}
