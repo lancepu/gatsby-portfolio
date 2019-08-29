@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import UserCard from "./userCard";
 import { Row, Col, Button, Card, Radio } from "antd";
 import CustomInputNumber from "./customInputNumber";
-import { object } from "prop-types";
+import { isNull } from "util";
 
 class DutchCard extends Component {
   state = {
     data: { subTotal: 0, taxAmount: 0, tip: 0.15 },
     users: [],
+    result: [],
   };
 
   handleInputChange = name => value => {
@@ -19,12 +20,25 @@ class DutchCard extends Component {
     });
   };
 
+  handleUserPriceChange = name => value => {
+    const users = [...this.state.users];
+    const updatedUsers = users.map(u => {
+      if (u.userNumber == name) {
+        u.currentItem = value;
+        return u;
+      }
+      return u;
+    });
+    this.setState({ users: updatedUsers });
+  };
+
   handleAddUser = () => {
     const { users } = this.state;
     const userNumber = users.length + 1;
     const user = {
       userNumber,
-      items: ["test1", "test2"],
+      items: [],
+      currentItem: 0,
     };
     users.push(user);
     this.setState({ users }, () => {
@@ -33,7 +47,17 @@ class DutchCard extends Component {
   };
 
   handlePriceAdd = target => {
-    console.log(target);
+    const { userNumber } = target;
+    const users = [...this.state.users];
+    const updatedUsers = users.map(u => {
+      if (u.userNumber == userNumber) {
+        u.items.push(u.currentItem);
+        u.currentItem = 0;
+        return u;
+      }
+      return u;
+    });
+    this.setState({ users: updatedUsers });
   };
 
   handleUserDelete = target => {
@@ -52,10 +76,6 @@ class DutchCard extends Component {
     });
   };
 
-  handleInputChange = ({ target }) => {
-    console.log(target);
-  };
-
   handleTagClose = target => {
     const { userNumber, item } = target;
     const users = [...this.state.users];
@@ -71,7 +91,23 @@ class DutchCard extends Component {
   };
 
   calculateAmount = () => {
-    const { subTotal, taxAmount, personCount, tip } = this.state.data;
+    const { subTotal, taxAmount, tip } = this.state.data;
+    const users = [...this.state.users];
+    const taxPercentage = taxAmount / subTotal;
+    const result = users.map(u => {
+      const userSubtotal = u.items.reduce((a, b) => a + b, 0);
+      const userTaxAmount = userSubtotal * taxPercentage;
+      const userTipAmount = userSubtotal * tip;
+      const userGrandTotal = userSubtotal + userTaxAmount + userTipAmount;
+      return {
+        userNumber: u.userNumber,
+        userSubtotal,
+        userTaxAmount,
+        userTipAmount,
+        userGrandTotal,
+      };
+    });
+    console.log(result);
   };
 
   render() {
@@ -143,7 +179,7 @@ class DutchCard extends Component {
               handleTagClose={this.handleTagClose}
               handleDeleteUser={this.handleUserDelete}
               handlePriceAdd={this.handlePriceAdd}
-              handleInputChange={this.handleInputChange}
+              handleInputChange={this.handleUserPriceChange}
             />
           ))}
         </Row>

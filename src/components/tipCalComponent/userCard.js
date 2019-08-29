@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Card, Row, Col, Tag, Button, InputNumber } from "antd";
-import CustomInputNumber from "./customInputNumber";
 
 const UserCard = ({
   userNumber,
@@ -25,7 +24,7 @@ const UserCard = ({
           <Col span={8}>{`Person ${userNumber}`}</Col>
           <Col span={10}>
             <InputNumber
-              onBlur={handleInputChange}
+              onChange={handleInputChange(userNumber)}
               onFocus={e => e.target.select()}
             />
           </Col>
