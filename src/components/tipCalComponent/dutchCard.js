@@ -154,7 +154,7 @@ class DutchCard extends Component {
               <Col
                 span={8}
                 style={{ color: billColor }}
-              >{`User's Total: $${usersTotal.toFixed(2)}`}</Col>
+              >{`People Total: $${usersTotal.toFixed(2)}`}</Col>
             </Row>
           }
           visible={modalVisible}

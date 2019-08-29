@@ -59,7 +59,7 @@ class EvenCard extends Component {
     const result = this.state.result;
     const perPersonWhole = Math.ceil(result);
     const resultDiff = perPersonWhole - result;
-    const newTipAmount = data.tipAmount + resultDiff;
+    const newTipAmount = data.tipAmount + resultDiff * data.personCount;
     const newGrandTotal = perPersonWhole * data.personCount;
     data.grandTotal = newGrandTotal;
     data.tipAmount = newTipAmount;
