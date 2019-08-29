@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import UserCard from "./userCard";
-import { Row, Col, Button, Card, Radio } from "antd";
+import { Row, Col, Button, Card, Radio, Modal } from "antd";
 import CustomInputNumber from "./customInputNumber";
 import { isNull } from "util";
+import ResultCard from "./resultCard";
 
 class DutchCard extends Component {
   state = {
     data: { subTotal: 0, taxAmount: 0, tip: 0.15 },
+    billTotal: 0,
+    usersTotal: 0,
     users: [],
-    result: [],
+    results: [],
+    modalVisible: false,
   };
 
   handleInputChange = name => value => {
     const data = { ...this.state.data };
     isNull(value) ? (value = 0) : value;
     data[name] = value;
-    this.setState({ data }, () => {
-      console.log(this.state.data);
-    });
+    this.setState({ data });
   };
 
   handleUserPriceChange = name => value => {
@@ -41,9 +43,7 @@ class DutchCard extends Component {
       currentItem: 0,
     };
     users.push(user);
-    this.setState({ users }, () => {
-      console.log(this.state.users);
-    });
+    this.setState({ users });
   };
 
   handlePriceAdd = target => {
@@ -71,9 +71,7 @@ class DutchCard extends Component {
     const tip = e.target.value;
     const data = { ...this.state.data };
     data["tip"] = parseFloat(tip);
-    this.setState({ data }, () => {
-      console.log(this.state.data);
-    });
+    this.setState({ data });
   };
 
   handleTagClose = target => {
@@ -92,13 +90,16 @@ class DutchCard extends Component {
 
   calculateAmount = () => {
     const { subTotal, taxAmount, tip } = this.state.data;
+    const billTotal = subTotal + taxAmount + subTotal * tip;
+    let usersTotal = 0;
     const users = [...this.state.users];
     const taxPercentage = taxAmount / subTotal;
-    const result = users.map(u => {
+    const results = users.map(u => {
       const userSubtotal = u.items.reduce((a, b) => a + b, 0);
       const userTaxAmount = userSubtotal * taxPercentage;
       const userTipAmount = userSubtotal * tip;
       const userGrandTotal = userSubtotal + userTaxAmount + userTipAmount;
+      usersTotal += userGrandTotal;
       return {
         userNumber: u.userNumber,
         userSubtotal,
@@ -107,13 +108,72 @@ class DutchCard extends Component {
         userGrandTotal,
       };
     });
-    console.log(result);
+    this.setState({ results, billTotal, usersTotal, modalVisible: true });
+  };
+
+  // Modal to display result
+  handleModalCancel = () => {
+    this.setState({
+      modalVisible: false,
+    });
+  };
+
+  handleWholeNumber = () => {
+    // Round up the grandtotal of each user to the nearest whole number, the difference will be added to tip amount
+    const results = [...this.state.results];
+    let usersTotal = 0;
+    const newResults = results.map(r => {
+      const ceilGrandTotal = Math.ceil(r.userGrandTotal);
+      const grandTotalDiff = ceilGrandTotal - r.userGrandTotal;
+      const newTipAmount = r.userTipAmount + grandTotalDiff;
+      usersTotal += ceilGrandTotal;
+      return {
+        userNumber: r.userNumber,
+        userSubtotal: r.userSubtotal,
+        userTaxAmount: r.userTaxAmount,
+        userTipAmount: newTipAmount,
+        userGrandTotal: ceilGrandTotal,
+      };
+    });
+
+    this.setState({ results: newResults, usersTotal });
   };
 
   render() {
     const { subTotal, taxAmount, tip } = this.state.data;
+    const { modalVisible, results, billTotal, usersTotal } = this.state;
+    let billColor = "";
+    usersTotal < billTotal ? (billColor = "red") : (billColor = "green");
     return (
       <React.Fragment>
+        <Modal
+          title={
+            <Row>
+              <Col span={8}>Result</Col>
+              <Col span={8}>{`Bill Total: $${billTotal.toFixed(2)}`}</Col>
+              <Col
+                span={8}
+                style={{ color: billColor }}
+              >{`User's Total: $${usersTotal.toFixed(2)}`}</Col>
+            </Row>
+          }
+          visible={modalVisible}
+          onOk={this.handleWholeNumber}
+          okText="Whole Number"
+          onCancel={this.handleModalCancel}
+          cancelText="Close"
+          closable={false}
+        >
+          {usersTotal < billTotal ? (
+            <p style={{ color: "red" }}>
+              Looks like the user total doesn't add up to bill amount, please
+              double check
+            </p>
+          ) : null}
+          {results.map(o => (
+            <ResultCard obj={o} />
+          ))}
+        </Modal>
         <Card
           title={
             <Row>
@@ -123,7 +183,6 @@ class DutchCard extends Component {
               </Col>
             </Row>
           }
-          style={{ minWidth: "400px", margin: "0 15px" }}
         >
           <Row>
             <Col>Tip Amount</Col>
@@ -139,7 +198,7 @@ class DutchCard extends Component {
               <Radio.Button value={0.25}>25%</Radio.Button>
               <Radio.Button value={0.3}>30%</Radio.Button>
             </Radio.Group>
-            <Col style={{ margin: "10px" }}>
+            <Col>
               <CustomInputNumber
                 label={"Sub Total"}
                 name={"subTotal"}
@@ -155,15 +214,15 @@ class DutchCard extends Component {
                 minValue={0}
               />
             </Col>
-
-            <Button
-              type="primary"
-              shape="circle"
-              icon="plus"
-              onClick={this.handleAddUser}
-            />
-
-            <Col style={{ margin: "10px" }}>
+            <Col style={{ marginBottom: "20px" }}>
+              <Button
+                type="primary"
+                shape="circle"
+                icon="plus"
+                onClick={this.handleAddUser}
+              />
+            </Col>
+            <Col>
               <Button type="primary" onClick={this.calculateAmount}>
                 Calculate
               </Button>
@@ -171,17 +230,19 @@ class DutchCard extends Component {
           </Row>
         </Card>
         <Row>
-          {this.state.users.map(u => (
-            <UserCard
-              key={u.userNumber}
-              userNumber={u.userNumber}
-              items={u.items}
-              handleTagClose={this.handleTagClose}
-              handleDeleteUser={this.handleUserDelete}
-              handlePriceAdd={this.handlePriceAdd}
-              handleInputChange={this.handleUserPriceChange}
-            />
-          ))}
+          <Col>
+            {this.state.users.map(u => (
+              <UserCard
+                key={u.userNumber}
+                userNumber={u.userNumber}
+                items={u.items}
+                handleTagClose={this.handleTagClose}
+                handleDeleteUser={this.handleUserDelete}
+                handlePriceAdd={this.handlePriceAdd}
+                handleInputChange={this.handleUserPriceChange}
+              />
+            ))}
+          </Col>
         </Row>
       </React.Fragment>
     );

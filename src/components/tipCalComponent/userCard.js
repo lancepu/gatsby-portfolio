@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, Row, Col, Tag, Button, InputNumber } from "antd";
 
 const UserCard = ({
@@ -12,7 +12,7 @@ const UserCard = ({
   return (
     <Card
       title={
-        <Row>
+        <Row type="flex" justify="center">
           <Col span={2}>
             <Button
               type="danger"
@@ -38,7 +38,7 @@ const UserCard = ({
           </Col>
         </Row>
       }
-      style={{ minWidth: "400px", margin: "5px 15px" }}
+      style={{ marginTop: "10px", minWidth: "370px" }}
     >
       {items.map(i => (
         <Tag
