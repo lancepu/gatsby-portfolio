@@ -9,7 +9,9 @@ const ResultCard = ({ obj }) => {
         <Col span={24}>{`Sub Total: $${obj.userSubtotal.toFixed(2)}`}</Col>
         <Col span={24}>{`Tax: $${obj.userTaxAmount.toFixed(2)}`}</Col>
         <Col span={24}>{`Tip: $${obj.userTipAmount.toFixed(2)}`}</Col>
-        <Col span={24}>{`Grand Total: $${obj.userGrandTotal.toFixed(2)}`}</Col>
+        <Col span={24}>{`Person Grand Total: $${obj.userGrandTotal.toFixed(
+          2,
+        )}`}</Col>
       </Row>
     </Card>
   );
