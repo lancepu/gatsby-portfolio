@@ -27,6 +27,8 @@ body {
   font-feature-settings: "liga", "tnum", "case", "calt", "zero", "ss01", "locl";
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
+  --btnBg: #fe5186 !important;
+
   h1,
   h2,
   h3,
@@ -35,8 +37,26 @@ body {
   h6 {
     color: var(--light-theme-pink);
   }
+
+  /* @radio-prefix-cls: ~'ant-radio';
+@radio-group-prefix-cls: ~'ant-radio-group';
+@radio-inner-prefix-cls: ~'ant-radio-inner'; */
+
+  /* .ant-btn {
+    background-color: var(--btnBg);
+    border-color: var(--btnBg);
+  } */
+
   a:hover {
     color: var(--light-theme-pink);
+  }
+
+  .radio {
+    background-color: var(--light-theme-pink);
+  }
+
+  .faIcon {
+    color: var(--light-color);
   }
 
   @media (--phone) {
@@ -44,6 +64,7 @@ body {
   }
 
   &.dark-theme {
+    --btnBg: #ffa7c4 !important;
     background-color: var(--dark-background);
     color: var(--dark-color);
     h1,
@@ -56,6 +77,14 @@ body {
     }
     a:hover {
       color: var(--dark-theme-pink);
+    }
+    .faIcon {
+      color: var(--dark-color);
+    }
+
+    .ant-btn {
+      background-color: var(--btnBg);
+      border-color: var(--btnBg);
     }
   }
 }
@@ -373,4 +402,8 @@ footer {
       }
     }
   }
+}
+
+.faIcon {
+  font-size: 2rem;
 }

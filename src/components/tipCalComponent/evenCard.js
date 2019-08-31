@@ -108,7 +108,9 @@ class EvenCard extends Component {
               defaultValue={tip}
               buttonStyle="solid"
               onChange={this.handleTipChange}
-              style={{ marginBottom: "20px" }}
+              style={{
+                marginBottom: "20px",
+              }}
             >
               <Radio.Button value={0.15}>15%</Radio.Button>
               <Radio.Button value={0.18}>18%</Radio.Button>

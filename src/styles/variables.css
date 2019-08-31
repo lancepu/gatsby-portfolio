@@ -13,7 +13,7 @@
   --dark-color: #a9a9b3;
   --dark-color-secondary: #73747b;
   --dark-border-color: #4a4b50;
-  --dark-theme-pink: rgb(255, 167, 196);
+  --dark-theme-pink: #ffa7c4;
 
   /* variables for js, must be the same as these in @custom-media queries */
   --phoneWidth: (max-width: 684px);
