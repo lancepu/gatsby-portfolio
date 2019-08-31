@@ -27,10 +27,26 @@ const Index = () => {
         <a href="/about">
           <img className="avatar" src={profilePic} alt="Lance Pu" />
         </a>
-        <p style={{ fontSize: "20px" }}>
+        <Row
+          type="flex"
+          justify="center"
+          style={{ margin: "20px 0", fontSize: "20px" }}
+        >
+          <Col span={24}>Welcome to my</Col>
+          <Col span={8}>
+            <a href="/project">portfolio</a>
+          </Col>
+          <Col span={8}>
+            <a href="/blog">blog</a>
+          </Col>
+          <Col span={8}>
+            <a href="/tool">utility belt</a>
+          </Col>
+        </Row>
+        {/* <p style={{ fontSize: "20px" }}>
           Welcome to my <a href="/project">portfolio</a> /{" "}
           <a href="/blog">blog</a> / <a href="/tool">utility belt</a>
-        </p>
+        </p> */}
         <h3>Proficiencies</h3>
         <Row type="flex" justify="center" style={{ margin: "10px 0" }}>
           <Col span={6}>
