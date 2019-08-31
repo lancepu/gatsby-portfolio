@@ -55,7 +55,6 @@ module.exports = {
         modifyVars: {
           "link-color": "inherit",
           "link-decoration": "underline",
-          "btn-primary-bg": "var(--btnBg)",
           "radio-dot-color": "#ffa7c4",
           "radio-button-active-color": "var(--btnBg)",
           "radio-button-hover-color": "var(--btnBg)",

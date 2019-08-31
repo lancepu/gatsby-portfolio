@@ -42,17 +42,13 @@ body {
 @radio-group-prefix-cls: ~'ant-radio-group';
 @radio-inner-prefix-cls: ~'ant-radio-inner'; */
 
-  /* .ant-btn {
+  .ant-btn-primary {
     background-color: var(--btnBg);
     border-color: var(--btnBg);
-  } */
+  }
 
   a:hover {
     color: var(--light-theme-pink);
-  }
-
-  .radio {
-    background-color: var(--light-theme-pink);
   }
 
   .faIcon {
@@ -82,7 +78,7 @@ body {
       color: var(--dark-color);
     }
 
-    .ant-btn {
+    .ant-btn-primary {
       background-color: var(--btnBg);
       border-color: var(--btnBg);
     }
