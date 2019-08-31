@@ -47,12 +47,31 @@ Now that this is done, we can start the override...
     modifyVars: {
         'link-color': 'inherit;',
         'link-decoration': 'underline',
+        "radio-button-checked-bg": "var(--btnBg)",
     }
     }
 }
 ```
 
 As you can probably guess, `link-color` refers to the `anchor` tag color and `link-decoration` refers to the `anchor text-decoration`.
+
+Since my site is using both light and dark themes, you can declare a variable, like `--btnBg` to assign to the override variable:
+
+```css
+body {
+  /* a shade of pink */
+  --btnBg: #fe5186;
+}
+
+.dark-theme {
+  /* lighter shade of pink */
+  --btnBg: #ffa7c4;
+}
+```
+
+This way, when the theme is switched, the color of the override will change accordingly.
+
+**_Please note that this variable assignment does not work for some Ant Design variables, such as `primary-color` or `radio-dot-color`. It seems that these variables were referenced in some functions so you will get a compile error when trying to override with a variable. If you know how to resolve this, please send me an email and let me know, it would help me greatly!_**
 
 Now my site style is back to normal.
 
