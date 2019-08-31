@@ -28,7 +28,7 @@ const Footer = () => (
     </a>
     &ndash;{" "}
     <a href={resume} target="_blank" rel="noopener noreferrer">
-      Resume
+      résumé
     </a>
   </footer>
 );
