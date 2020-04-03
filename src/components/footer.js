@@ -1,5 +1,5 @@
 import React from "react";
-import resume from "../resume/LancePu_Resume.pdf";
+import resume from "../resume/LancePu_Technical_Resume.pdf";
 
 const Footer = () => (
   <footer>
