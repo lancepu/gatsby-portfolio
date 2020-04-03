@@ -51,6 +51,20 @@ const Index = () => {
         <Row type="flex" justify="center" style={{ margin: "10px 0" }}>
           <Col span={6}>
             <Proficiency
+              percent={50}
+              description="ReactJS"
+              format={<FontAwesomeIcon className="faIcon" icon={faJava} />}
+            />
+          </Col>
+          <Col span={6}>
+            <Proficiency
+              percent={50}
+              description="ReactJS"
+              format={<FontAwesomeIcon className="faIcon" icon={faJava} />}
+            />
+          </Col>
+          <Col span={6}>
+            <Proficiency
               percent={60}
               description="ReactJS"
               format={<FontAwesomeIcon className="faIcon" icon={faReact} />}
@@ -93,14 +107,14 @@ const Index = () => {
           </Col>
           <Col span={6}>
             <Proficiency
-              percent={40}
+              percent={50}
               description="Python"
               format={<FontAwesomeIcon className="faIcon" icon={faPython} />}
             />
           </Col>
           <Col span={6}>
             <Proficiency
-              percent={30}
+              percent={50}
               description="AWS"
               format={<FontAwesomeIcon className="faIcon" icon={faAws} />}
             />
@@ -114,7 +128,7 @@ const Index = () => {
           </Col>
           <Col span={6}>
             <Proficiency
-              percent={10}
+              percent={20}
               description="Docker"
               format={<FontAwesomeIcon className="faIcon" icon={faDocker} />}
             />
