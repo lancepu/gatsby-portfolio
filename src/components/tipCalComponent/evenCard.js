@@ -101,30 +101,33 @@ class EvenCard extends Component {
           </Row>
         </Modal>
 
-        <Card title="Split Evenly">
+        <Card title="Split Evenly" style={{maxWidth: "400px"}}>
           <Row>
-            <Col>Tip Amount</Col>
-            <Radio.Group
-              defaultValue={tip}
-              buttonStyle="solid"
-              onChange={this.handleTipChange}
-              style={{
-                marginBottom: "20px",
-              }}
-            >
-              <Radio.Button value={0.15}>15%</Radio.Button>
-              <Radio.Button value={0.18}>18%</Radio.Button>
-              <Radio.Button value={0.2}>20%</Radio.Button>
-              <Radio.Button value={0.25}>25%</Radio.Button>
-              <Radio.Button value={0.3}>30%</Radio.Button>
-            </Radio.Group>
-            <Col>
+            <Col span={24}>Tip Amount</Col>
+            <Col span={24}>
+              <Radio.Group
+                defaultValue={tip}
+                buttonStyle="solid"
+                onChange={this.handleTipChange}
+                style={{
+                  marginBottom: "20px",
+                }}
+              >
+                <Radio.Button value={0.15}>15%</Radio.Button>
+                <Radio.Button value={0.18}>18%</Radio.Button>
+                <Radio.Button value={0.2}>20%</Radio.Button>
+                <Radio.Button value={0.25}>25%</Radio.Button>
+                <Radio.Button value={0.3}>30%</Radio.Button>
+              </Radio.Group>
+            </Col>
+            <Col span={24}>
               <CustomInputNumber
                 label={"Sub Total"}
                 name={"subTotal"}
                 handleInputChange={this.handleInputChange}
                 value={subTotal}
                 minValue={0}
+                precision={2}
               />
               <CustomInputNumber
                 label={"Tax Amount"}
@@ -132,6 +135,7 @@ class EvenCard extends Component {
                 handleInputChange={this.handleInputChange}
                 value={taxAmount}
                 minValue={0}
+                precision={2}
               />
               <CustomInputNumber
                 label={"Number of People"}
@@ -139,9 +143,10 @@ class EvenCard extends Component {
                 handleInputChange={this.handleInputChange}
                 value={personCount}
                 minValue={1}
+                precision={0}
               />
             </Col>
-            <Col style={{ marginTop: "20px" }}>
+            <Col style={{ marginTop: "20px" }} span={24}>
               <Button type="primary" onClick={this.calculateAmount}>
                 Calculate
               </Button>

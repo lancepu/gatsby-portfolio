@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import UserCard from "./userCard";
 import { Row, Col, Button, Card, Radio, Modal } from "antd";
+import { PlusCircleOutlined } from '@ant-design/icons';
 import CustomInputNumber from "./customInputNumber";
 import { isNull } from "util";
 import ResultCard from "./resultCard";
 
 class DutchCard extends Component {
   state = {
-    data: { subTotal: 0, taxAmount: 0, tip: 0.15 },
+    data: { subTotal: 0.00, taxAmount: 0.00, tip: 0.15 },
     billTotal: 0,
     usersTotal: 0,
+    usersSubtotal: 0,
+    tipTotal: 0,
     users: [],
     results: [],
     modalVisible: false,
@@ -92,6 +95,8 @@ class DutchCard extends Component {
     const { subTotal, taxAmount, tip } = this.state.data;
     const billTotal = subTotal + taxAmount + subTotal * tip;
     let usersTotal = 0;
+    let tipTotal = 0;
+    let usersSubtotal = 0;
     const users = [...this.state.users];
     const taxPercentage = taxAmount / subTotal;
     const results = users.map(u => {
@@ -100,6 +105,8 @@ class DutchCard extends Component {
       const userTipAmount = userSubtotal * tip;
       const userGrandTotal = userSubtotal + userTaxAmount + userTipAmount;
       usersTotal += userGrandTotal;
+      usersSubtotal += userSubtotal;
+      tipTotal += userTipAmount;
       return {
         userNumber: u.userNumber,
         userSubtotal,
@@ -108,7 +115,7 @@ class DutchCard extends Component {
         userGrandTotal,
       };
     });
-    this.setState({ results, billTotal, usersTotal, modalVisible: true });
+    this.setState({ results, billTotal, usersTotal, tipTotal, usersSubtotal, modalVisible: true });
   };
 
   // Modal to display result
@@ -122,11 +129,13 @@ class DutchCard extends Component {
     // Round up the grandtotal of each user to the nearest whole number, the difference will be added to tip amount
     const results = [...this.state.results];
     let usersTotal = 0;
+    let tipTotal = 0;
     const newResults = results.map(r => {
       const ceilGrandTotal = Math.ceil(r.userGrandTotal);
       const grandTotalDiff = ceilGrandTotal - r.userGrandTotal;
       const newTipAmount = r.userTipAmount + grandTotalDiff;
       usersTotal += ceilGrandTotal;
+      tipTotal += newTipAmount;
       return {
         userNumber: r.userNumber,
         userSubtotal: r.userSubtotal,
@@ -136,12 +145,12 @@ class DutchCard extends Component {
       };
     });
 
-    this.setState({ results: newResults, usersTotal });
+    this.setState({ results: newResults, usersTotal, tipTotal });
   };
 
   render() {
     const { subTotal, taxAmount, tip } = this.state.data;
-    const { modalVisible, results, billTotal, usersTotal } = this.state;
+    const { modalVisible, results, billTotal, tipTotal, usersSubtotal, usersTotal } = this.state;
     let billColor = "";
     usersTotal < billTotal ? (billColor = "red") : (billColor = "green");
     return (
@@ -149,10 +158,14 @@ class DutchCard extends Component {
         <Modal
           title={
             <Row>
-              <Col span={8}>Result</Col>
-              <Col span={8}>{`Bill Total: $${billTotal.toFixed(2)}`}</Col>
+              <Col span={24}>Result</Col>
+              <Col span={24}>{`Subtotal Total: $${subTotal}`}</Col>
+              <Col span={24}>{`Tax Total: $${taxAmount}`}</Col>
+              <Col span={24}>{`Tip Total: $${tipTotal.toFixed(2)}`}</Col>
+              <hr/>
+              <Col span={24}>{`Bill Total: $${billTotal.toFixed(2)}`}</Col>
               <Col
-                span={8}
+                span={24}
                 style={{ color: billColor }}
               >{`People Total: $${usersTotal.toFixed(2)}`}</Col>
             </Row>
@@ -166,8 +179,12 @@ class DutchCard extends Component {
         >
           {usersTotal < billTotal ? (
             <p style={{ color: "red" }}>
-              Looks like the user total doesn't add up to bill amount, please
-              double check
+              Looks like the user total doesn't add up to bill amount, please double check!
+            </p>
+          ) : null}
+          {usersSubtotal > subTotal ? (
+            <p style={{ color: "red" }}>
+              Looks like the user subTotal is more than the bill subtotal, please double check!
             </p>
           ) : null}
           {results.map(o => (
@@ -177,34 +194,38 @@ class DutchCard extends Component {
         <Card
           title={
             <Row>
-              <Col>Going Dutch</Col>
-              <Col>
+              <Col span={24}>Going Dutch</Col>
+              <Col span={24}>
                 <Card.Meta description="Each person pay for what they ordered" />
               </Col>
             </Row>
           }
+          style={{maxWidth: "400px"}}
         >
           <Row>
-            <Col>Tip Amount</Col>
-            <Radio.Group
-              defaultValue={tip}
-              buttonStyle="solid"
-              onChange={this.handleTipChange}
-              style={{ marginBottom: "20px" }}
-            >
-              <Radio.Button value={0.15}>15%</Radio.Button>
-              <Radio.Button value={0.18}>18%</Radio.Button>
-              <Radio.Button value={0.2}>20%</Radio.Button>
-              <Radio.Button value={0.25}>25%</Radio.Button>
-              <Radio.Button value={0.3}>30%</Radio.Button>
-            </Radio.Group>
-            <Col>
+            <Col span={24}>Tip Amount</Col>
+            <Col span={24}>
+              <Radio.Group
+                defaultValue={tip}
+                buttonStyle="solid"
+                onChange={this.handleTipChange}
+                style={{ marginBottom: "20px" }}
+              >
+                <Radio.Button value={0.15}>15%</Radio.Button>
+                <Radio.Button value={0.18}>18%</Radio.Button>
+                <Radio.Button value={0.2}>20%</Radio.Button>
+                <Radio.Button value={0.25}>25%</Radio.Button>
+                <Radio.Button value={0.3}>30%</Radio.Button>
+              </Radio.Group>
+            </Col>
+            <Col span={24}>
               <CustomInputNumber
                 label={"Sub Total"}
                 name={"subTotal"}
                 handleInputChange={this.handleInputChange}
                 value={subTotal}
                 minValue={0}
+                precision={2}
               />
               <CustomInputNumber
                 label={"Tax Amount"}
@@ -212,14 +233,15 @@ class DutchCard extends Component {
                 handleInputChange={this.handleInputChange}
                 value={taxAmount}
                 minValue={0}
+                precision={2}
               />
             </Col>
-            <Col style={{ marginBottom: "20px" }}>
-              <Button type="primary" icon="plus" onClick={this.handleAddUser}>
+            <Col style={{ marginBottom: "20px" }} span={24}>
+              <Button type="primary" icon={<PlusCircleOutlined />} onClick={this.handleAddUser}>
                 Add Person
               </Button>
             </Col>
-            <Col>
+            <Col span={24}>
               <Button type="primary" onClick={this.calculateAmount}>
                 Calculate
               </Button>

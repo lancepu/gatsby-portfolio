@@ -7,6 +7,7 @@ const CustomInputNumber = ({
   handleInputChange,
   minValue,
   value,
+  precision
 }) => {
   return (
     <Row
@@ -24,6 +25,7 @@ const CustomInputNumber = ({
           value={value}
           min={minValue}
           onFocus={e => e.target.select()}
+          precision={precision}
         />
       </Col>
     </Row>

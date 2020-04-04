@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Tag, Button, InputNumber } from "antd";
+import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 const UserCard = ({
   userNumber,
@@ -18,7 +19,7 @@ const UserCard = ({
             <Button
               type="danger"
               shape="circle"
-              icon="minus"
+              icon={<MinusCircleOutlined />}
               onClick={() => handleDeleteUser({ userNumber })}
             />
           </Col>
@@ -28,13 +29,15 @@ const UserCard = ({
               onChange={handleInputChange(userNumber)}
               value={currentItem}
               onFocus={e => e.target.select()}
+              min={0}
+              precision={2}
             />
           </Col>
           <Col span={2}>
             <Button
               type="primary"
               shape="circle"
-              icon="plus"
+              icon={<PlusCircleOutlined />}
               onClick={() => handlePriceAdd({ userNumber })}
             />
           </Col>

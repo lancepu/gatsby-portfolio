@@ -1,7 +1,7 @@
 import React from "react";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
-import { Row, Col, Progress } from "antd";
+import { Row, Col } from "antd";
 import profilePic from "../images/lancepu_profile.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDatabase, faCalculator } from "@fortawesome/free-solid-svg-icons";
