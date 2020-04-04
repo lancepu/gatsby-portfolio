@@ -401,5 +401,13 @@ footer {
 }
 
 .faIcon {
-  font-size: 2rem;
+  font-size: 1rem;
+}
+
+.proficiency:hover {
+  transform: scale(1.2);
+}
+
+.toolsShortcut:hover {
+  transform: scale(1.2);
 }

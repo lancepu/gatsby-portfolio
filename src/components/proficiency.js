@@ -7,7 +7,7 @@ const Proficiency = ({ percent, description, format }) => {
       <Progress
         type="circle"
         strokeColor={"var(--btnBg)"}
-        width={60}
+        width={40}
         percent={percent}
         format={() => format}
       />
