@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, Row, Col, Tag, Button, InputNumber } from "antd";
-import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
+import { Card, Row, Col, Tag, Button, InputNumber, Input } from "antd";
+import { PlusCircleOutlined, MinusCircleOutlined } from "@ant-design/icons";
 
 const UserCard = ({
+  displayName,
   userNumber,
   items,
   currentItem,
@@ -10,6 +11,7 @@ const UserCard = ({
   handleDeleteUser,
   handlePriceAdd,
   handleInputChange,
+  handleUserDisplayNameChange,
 }) => {
   return (
     <Card
@@ -23,7 +25,12 @@ const UserCard = ({
               onClick={() => handleDeleteUser({ userNumber })}
             />
           </Col>
-          <Col span={8}>{`Person ${userNumber}`}</Col>
+          <Col span={8}>
+            <Input
+              value={displayName}
+              onChange={e => handleUserDisplayNameChange({ e, userNumber })}
+            />
+          </Col>
           <Col span={10}>
             <InputNumber
               onChange={handleInputChange(userNumber)}

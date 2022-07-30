@@ -5,7 +5,7 @@ const ResultCard = ({ obj }) => {
   return (
     <Card>
       <Row>
-        <Col span={24}>{`Person ${obj.userNumber}`}</Col>
+        <Col span={24}>{obj.displayName}</Col>
         <Col span={24}>{`Sub Total: $${obj.userSubtotal.toFixed(2)}`}</Col>
         <Col span={24}>{`Tax: $${obj.userTaxAmount.toFixed(2)}`}</Col>
         <Col span={24}>{`Tip: $${obj.userTipAmount.toFixed(2)}`}</Col>
