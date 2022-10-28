@@ -101,7 +101,7 @@ class EvenCard extends Component {
           </Row>
         </Modal>
 
-        <Card title="Split Evenly" style={{maxWidth: "400px"}}>
+        <Card title="Split Evenly" style={{ maxWidth: "400px" }}>
           <Row>
             <Col span={24}>Tip Amount</Col>
             <Col span={24}>
@@ -113,6 +113,7 @@ class EvenCard extends Component {
                   marginBottom: "20px",
                 }}
               >
+                <Radio.Button value={0}>0%</Radio.Button>
                 <Radio.Button value={0.15}>15%</Radio.Button>
                 <Radio.Button value={0.18}>18%</Radio.Button>
                 <Radio.Button value={0.2}>20%</Radio.Button>

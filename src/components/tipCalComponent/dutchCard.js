@@ -243,6 +243,7 @@ class DutchCard extends Component {
                 onChange={this.handleTipChange}
                 style={{ marginBottom: "20px" }}
               >
+                <Radio.Button value={0}>0%</Radio.Button>
                 <Radio.Button value={0.15}>15%</Radio.Button>
                 <Radio.Button value={0.18}>18%</Radio.Button>
                 <Radio.Button value={0.2}>20%</Radio.Button>
